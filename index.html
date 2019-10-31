@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> </title>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/tank.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+</head>
+
+<body>
+    <div class="tankBackground" id="fundo"></div>
+    <p class="iluminacao" id="luz"></p>
+    <div id="sideBar">
+
+        <p id="balance"> $ 200</p>
+        <br><br><br><br><br><br>
+        
+
+        <div id="foodType">
+          
+        </div>
+
+        <div id="foodAmount">
+           
+        </div>
+        <div id="addFish">
+                <img src="img/Fish1.png" alt="">
+                <br><br>
+                <button type="button" class="btn btn-success" id="addFish">Adicionar Peixe</button>
+            </div>
+       
+        <div id="turnOff">
+            <img src="img/led.png" alt="" id="led">
+            <br><br>
+            <button type="button" class="btn btn-success" id="turnOffBtn">Luzes ON/OFF</button>
+        </div>
+        <div class="tpa">
+                <img src="img/tpa.png" alt="" id="tpaImg">
+                
+            <button type="button" class="btn btn-success" id="colect">Realizar TPA</button>
+        </div>
+        <div class="rochaDiv">
+            
+        <button type="button" class="btn btn-success" id="rocha">Adicionar Pedra</button>
+    </div>
+        <div id="amonia">
+                <p>Amônia</p>
+                <p id="amoniaNum">0 ppm</p>
+            </div>
+           
+        
+    </div>
+
+
+    <canvas id="myCanvas" width="1300" height="700"></canvas>
+    <script src="/js/global.js"></script>
+    <script src="/js/model/rock.js"></script>
+    <script src="/js/model/coin.js"></script>
+    <script src="/js/model/food.js"></script>
+    <script src="/js/luz.js"></script>
+    <script src="/js/model/fish.js"></script>
+    <script src="/js/tank.js"></script>
+
+    <script src="js/firebase.js"></script>
+
+</body>
+
+</html>
