@@ -73,17 +73,20 @@ document.getElementById("colect").addEventListener("click", function (e) {
 })
 
 function realizarTpa(tpaNum) {
-    tpa = tpaNum;
+   
     var qtCoin = coinArray.length;
     if (coinArray.length > 0) {
-        tpa = 1;
+        tpa = 0;
         for (var i = qtCoin; i > 0; i--) {
 
             coinArray.pop();
+            amonia = parseFloat(amonia - 0.01);
         }
         balance += (qtCoin * 10);
         setMoney(balance);
         setTpa(tpa);
+        setAmonia(amonia);
+        
 
         console.log("Foram coletados " + qtCoin + " coins");
 

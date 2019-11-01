@@ -127,19 +127,19 @@ class fish {
 
     //Gerar Coin/Poop
     generateCoin() {
-        this._coinReady = Math.floor(Math.random() * 2000)
+        this._coinReady = Math.floor(Math.random() * 5000)
     }
 
 
     //Dropando o Coin
     coinDrop() {
-        if (this._coinReady == 500 && this._hunger > 25) {
+        if (this._coinReady == 1000) {
             let coinNum = coinArray.length
-            let amoniaL = 0.10;
+            let amoniaL = 0.01;
             let addedCoin = new coin(this._fishX + 90, this._fishY + 95, coinNum, amoniaL)
-            amonia = amonia + amoniaL;
-            console.log("AMONIA: " + amonia);
+            amonia = parseFloat(amonia + amoniaL);
             coinArray.push(addedCoin);
+            setAmonia(amonia);
 
         }
 

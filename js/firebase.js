@@ -115,3 +115,24 @@ dbPh.on("value", snap => {
     phNum = snap.val()['ph'];
     pH = phNum;
 });
+
+
+
+const dbAmonia = firebase.database().ref('aquarium/amonia');
+
+//PH set - setar PH
+function setAmonia(amoniaNum){
+    amoniaNumF = parseFloat(amoniaNum).toFixed(2);
+    console.log(amoniaNumF);
+    var postData = {
+        amonia: amoniaNumF
+    };
+    dbAmonia.update(postData);
+}
+
+dbAmonia.on("value", snap => {
+    amoniaNum = snap.val()['amonia'];
+    amonia = amoniaNum;
+});
+
+
