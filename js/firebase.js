@@ -24,10 +24,10 @@ var fundo = $('#fundo');
 dbIluminacao.on("value", snap => {
     if (snap.val() == 0) {
         console.log("ILUMINACAO OFF");
-        
+
         aquariumIluminacaoUI.removeClass("iluminacao");
         aquariumIluminacaoUI.addClass("iluminacaoOff");
-          
+
         fundo.removeClass('tankBackground');
         fundo.addClass('tankBackgroundOff');
 
@@ -49,13 +49,13 @@ const dbMoney = firebase.database().ref('aquarium/money');
 //Money on - Monitora alterações
 dbMoney.on("value", snap => {
     balance = snap.val()['money'];
-    balanceText.textContent = "$ "+balance
+    balanceText.textContent = "$ " + balance
 });
 
 
 //Money set - Seta novo valor
-function setMoney(balance){
-    var  postData = {
+function setMoney(balance) {
+    var postData = {
         money: balance,
     };
     dbMoney.update(postData);
@@ -65,7 +65,7 @@ function setMoney(balance){
 const dbPeixes = firebase.database().ref('aquarium/peixes');
 
 //Peixes set - seta o numero de peixes no aquario
-function setNumPeixes(peixes){
+function setNumPeixes(peixes) {
     var postData = {
         peixes: peixes
     };
@@ -79,11 +79,60 @@ dbPeixes.on("value", snap => {
     addFishFirebase(peixes);
 });
 
+
+const dbPedras = firebase.database().ref('aquarium/pedras');
+
+//Pedras set - seta o numero de pedras no aquario
+function setNumPedras(pedras) {
+    var postData = {
+        pedras: pedras
+    };
+    dbPedras.update(postData);
+}
+
+//Peixes on - Monitora alterações
+dbPedras.on("value", snap => {
+    pedrasNum = snap.val()['pedras'];
+    pedras = pedrasNum;
+    addPedraFirebase(pedras);
+});
+
+
+const dbBuffer = firebase.database().ref('aquarium/buffer');
+
+//Buffer set - seta o buffer no aquario
+function setBuffer(buffer) {
+    var postData = {
+        buffer: buffer
+    };
+    dbBuffer.update(postData);
+}
+
+//Buffer on - Monitora alterações
+dbBuffer.on("value", snap => {
+    bufferNum = snap.val()['buffer'];
+    console.log("BUFFER: " + bufferNum)
+    if (bufferNum > 0) {
+        tamponarPhNeutro(bufferNum);    
+    }
+
+    var n = 0;
+    setBuffer(n);
+
+});
+
+
+
+
+
+
+
+
 const dbTpa = firebase.database().ref('aquarium/tpa');
 
 
 //TPA set - realizar tpa
-function setTpa(tpaNum){
+function setTpa(tpaNum) {
     var postData = {
         tpa: tpaNum
     };
@@ -102,7 +151,7 @@ dbTpa.on("value", snap => {
 const dbPh = firebase.database().ref('aquarium/ph');
 
 //PH set - setar PH
-function setPh(phNum){
+function setPh(phNum) {
     var postData = {
         ph: phNum
     };
@@ -121,7 +170,7 @@ dbPh.on("value", snap => {
 const dbAmonia = firebase.database().ref('aquarium/amonia');
 
 //PH set - setar PH
-function setAmonia(amoniaNum){
+function setAmonia(amoniaNum) {
     amoniaNumF = parseFloat(amoniaNum).toFixed(2);
     console.log(amoniaNumF);
     var postData = {
@@ -134,5 +183,3 @@ dbAmonia.on("value", snap => {
     amoniaNum = snap.val()['amonia'];
     amonia = amoniaNum;
 });
-
-

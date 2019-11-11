@@ -25,10 +25,12 @@ function addFishFirebase(qtFish) {
             for (var i = 0; i < compare; i++) {
                 let addedFish = new fish()
                 fishArray.push(addedFish)
+                balance -= 200
+                setMoney(balance);
             }
-        }else{
+        } else {
             var compraelse = fishArray.length - qtFish;
-            var remove = ((qtFish - fishArray.length)*  (-1));
+            var remove = ((qtFish - fishArray.length) * (-1));
             removeFish(remove);
 
         }
@@ -36,11 +38,61 @@ function addFishFirebase(qtFish) {
 }
 
 
-function removeFish(removeQt){
+function addPedraFirebase(qtPedra) {
+    if (rockArray.length == 0) {
+        for (var i = 0; i < qtPedra; i++) {
+            var random = Math.floor(Math.random() * 1600)
+            var randomType = Math.floor(Math.random() * 2)
+            let addedRocha = new rock(random, 600, (rockArray.length + 1), randomType)
+            rockArray.push(addedRocha);
+
+        }
+    } else {
+        if (qtPedra >= rockArray.length) {
+            var compare = qtPedra - rockArray.length;
+            for (var i = 0; i < compare; i++) {
+                var random = Math.floor(Math.random() * 1600)
+                var randomType = Math.floor(Math.random() * 2)
+                let addedRocha = new rock(random, 600, (rockArray.length + 1), randomType)
+                rockArray.push(addedRocha);
+                pH += 0.5;
+                setPh(pH);
+                balance -= 100
+                setMoney(balance);
+            }
+        } else {
+            var compraelse = rockArray.length - qtPedra;
+            var remove = ((qtPedra - rockArray.length) * (-1));
+            
+            removePedra(remove);
+
+        }
+    }
+}
+
+
+function removeFish(removeQt) {
     for (var i = removeQt; i > 0; i--) {
 
         fishArray.pop();
+        balance += 75
+        setMoney(balance);
     }
+
+}
+
+
+function removePedra(removeQt) {
+    for (var i = removeQt; i > 0; i--) {
+
+        rockArray.pop();
+        pH -= 0.5;
+        setPh(pH);
+        balance += 45
+        setMoney(balance);
+    }
+
+  
 }
 
 
@@ -56,6 +108,7 @@ document.getElementById("rocha").addEventListener("click", function (e) {
         rockArray.push(addedRocha);
         pH += 0.05;
         setPh(pH);
+        setNumPedras(rockArray.length);
     }
 })
 
@@ -64,6 +117,9 @@ document.getElementById("rocha").addEventListener("click", function (e) {
 
 function tamponarPhNeutro(buffer) {
     pH = buffer;
+    setPh(pH);
+    balance -= 400;
+    setMoney(balance);
 }
 
 
@@ -73,25 +129,27 @@ document.getElementById("colect").addEventListener("click", function (e) {
 })
 
 function realizarTpa(tpaNum) {
-   
+
     var qtCoin = coinArray.length;
     if (coinArray.length > 0) {
         tpa = 0;
         for (var i = qtCoin; i > 0; i--) {
 
             coinArray.pop();
-            amonia = parseFloat(amonia - 0.01);
+
         }
         balance += (qtCoin * 10);
+        amonia = parseFloat(0);
         setMoney(balance);
         setTpa(tpa);
         setAmonia(amonia);
-        
+
 
         console.log("Foram coletados " + qtCoin + " coins");
 
     } else {
         tpa = 0;
+        setTpa(tpa);
     }
 }
 

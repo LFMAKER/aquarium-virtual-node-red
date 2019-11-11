@@ -15,6 +15,8 @@ var coinArray = [];
 var rockArray = [];
 var balance = 0;
 var peixes;
+var pedras;
+var buffer;
 var tpa = 0;
 var foodCount = 1;
 var foodType = 1;
